@@ -11,8 +11,17 @@ const { NotImplementedError } = require('../extensions/index.js');
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
-function getSeason(/* date */) {
-  throw new NotImplementedError('Not implemented');
+function getSeason(date) {
+  console.debug(date)
+  if (!date){
+    return 'Unable to determine the time of year!'
+  }
+  if (!(date instanceof Date)||date.toString() == Date.prototype.toString.call(new Date())){
+    console.debug('error found')
+    throw new Error('Invalid date!')
+  }
+  return ['winter','spring','summer','autumn','winter'][Math.floor((date.getMonth()+1)/3)]
+  //throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
 }
 
